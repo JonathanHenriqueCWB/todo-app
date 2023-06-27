@@ -1,16 +1,15 @@
-// Configuração Servidor Express e Middleware
-    const app = require('./config/server')
+// CONFIG - configuração do servidor
+const app = require('./config/server')
+// MODEL - string de conexão (mongoose)
+require('./config/conn')    
 
-// Confi string de conexão banco de dados mongoose
-    require('./config/database')
+// CONFIG - model, schema do banco de dados
+require('./models/Task')
+require('./models/User')
 
-// Model mongoose
-    require('./models/Tarefa')
-
-// Configuração das rotas
-    const tarefas = require('./routes/tarefas-route')
+// ROUTES - puxa todas as rotas referentes a tarefas
+const route = require('./routes/router')
 
 // ROTAS
-    app.use('/tarefas', tarefas)
-
+app.use('/api', route)
 
