@@ -1,7 +1,12 @@
+import {BrowserRouter} from 'react-router-dom'
+import Routes from './configRoutes'
+
 function App() {
     return (
         <>
-            <h1>Componente App - principal</h1>
+            <BrowserRouter>
+                <Routes />
+            </BrowserRouter>
         </>
     )
 }
