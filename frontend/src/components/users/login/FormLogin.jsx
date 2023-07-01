@@ -26,7 +26,7 @@ const FormularioLogon = props => {
                 </div>
                 <div>
                     <br /><input type="submit" value="LOGIN" /><br />
-                    <p>Cadastre-se aqui: <a href='/cadastrar'>cadastrar</a></p>
+                    <p>Cadastre-se aqui: <a href='/register'>cadastrar</a></p>
                 </div>
             </form>
         </div>

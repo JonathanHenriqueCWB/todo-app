@@ -10,7 +10,7 @@ export default function configRoutes() {
         <Routes>
             <Route path='/' element={<Home></Home>}/>
             <Route path='/login' element={<Login></Login>}/>
-            <Route path='/cadastrar' element={<Register></Register>}/>
+            <Route path='/register' element={<Register></Register>}/>
         </Routes>
     )
 }
