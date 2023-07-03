@@ -1,8 +1,9 @@
 const { User } = require('../models/User')
+const auth = require('.././config/auth')
+const bcryptjs = require('bcryptjs')
 
 const userController = {
     create: async(req, res) => {
-
         const error = []
         if(!req.body.password) error.push({msg: "Campo senha é obrigatorio"})
         if(!req.body.email) error.push({msg: "Campo email é obrigatorio"})
@@ -11,6 +12,7 @@ const userController = {
 
         const newUser = { password: req.body.password, email: req.body.email }
         new User(newUser).save().then(user => {
+            auth.incluirToken(user)
             res.json([user, {msg: 'Novo usuário criado com sucesso'}])
         }).catch(err => {
             res.json([{msg: "Erro ao cadastrar novo usuário" + err}])
@@ -41,6 +43,18 @@ const userController = {
         }).catch(err => {
             res.json([{msg: "Erro ao deletar usuário"}])
         })
+    },
+
+    login: async(req, res) => {
+        const { email, password } = req.body;
+
+        const user = await User.findOne({ 'email': email }).select('+senha')
+        
+        if (!user) return res.status(400).send({ error: 'Usuário não encontrado!' });
+        if (!await bcryptjs.compare(password, user.password)) return res.status(400).send({ error: 'Senha inválida!' });
+        
+        await auth.incluirToken(user);
+        res.status(200).json([user]);
     }
 }
 

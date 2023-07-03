@@ -3,7 +3,8 @@ const bcryptjs = require('bcryptjs')
 
 const userSchema = new mongoose.Schema({
     email: {type: String},
-    password: {type: String}
+    password: {type: String},
+    token: {type: String, select: false}
 }, {timestamps: true})
 
 // Antes de salvar no banco bcryptjs gera um hash
