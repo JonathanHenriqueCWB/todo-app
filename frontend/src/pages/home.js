@@ -1,11 +1,9 @@
-import FormTask from "../components/tasks/form/FormTask"
-import ListTask from "../components/tasks/list/ListTask"
+import Todo from "../components/todo/todo/Todo"
 
 const Task = props => {
     return (
         <div>
-            <FormTask />
-            <ListTask />
+            <Todo />
         </div>
     )
 }

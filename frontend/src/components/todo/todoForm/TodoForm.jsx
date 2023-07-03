@@ -1,6 +1,7 @@
 import {useState} from 'react'
+import './TodoForm.css'
 
-const FormTask = props => {
+const TodoForm = props => {
 
     const [description, setDescription] = useState('')
 
@@ -10,11 +11,11 @@ const FormTask = props => {
     }
 
     return (
-        <div>
-            <h2>Nova tarefa</h2>
+        <div className='TodoForm'>
             <form onSubmit={handleSubmit}>
+                <h1>NOVA TAREFA</h1><br />
                 <div>
-                    <label htmlFor="description">Descrição tarefa </label>
+                    <label htmlFor="description"></label>
                     <input type="text" value={description} onChange={e => setDescription(e.target.value)} />
                     <input type="submit" value="CRIAR TAREFA" />
                 </div>
@@ -23,4 +24,4 @@ const FormTask = props => {
     )
 }
 
-export default FormTask
+export default TodoForm

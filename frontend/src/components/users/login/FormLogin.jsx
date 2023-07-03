@@ -1,3 +1,4 @@
+import './FormLogin.css'
 import {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,27 +10,25 @@ const FormularioLogon = props => {
 
     function handleSubmit(event){
         event.preventDefault();
-        navigate('/tasks')        
+        navigate('/')        
     }
 
     return(
-        <div>
-            <h2>LOGIN</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="email">Email</label><br />
-                    <input type="text" value={email} onChange={e => setEmail(e.target.value)}  />
-                </div>
-                <div>
-                    <label htmlFor="password">Senha</label><br />
-                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-                </div>
-                <div>
-                    <br /><input type="submit" value="LOGIN" /><br />
-                    <p>Cadastre-se aqui: <a href='/register'>cadastrar</a></p>
-                </div>
-            </form>
-        </div>
+        <form onSubmit={handleSubmit} className='FormularioLogin'>            
+            <div><h2>LOGIN</h2></div>
+            <div>
+                <label htmlFor="mail">Email </label><br />
+                <input id='mail' name='mail' type="text" value={email} onChange={e => setEmail(e.target.value)}  />
+            </div>
+            <div>
+                <label htmlFor="senha">Senha </label><br />
+                <input id='senha' name='senha' type="password" value={password} onChange={e => setPassword(e.target.value)} />
+            </div>
+            <div>
+                <br /><input type="submit" value="LOGIN" /><br /><br />
+                <p>Cadastre-se aqui: <a href='/register'>cadastrar</a></p>
+            </div>
+        </form>
     )
 }
 

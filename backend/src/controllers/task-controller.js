@@ -2,6 +2,16 @@ const Task = require('../models/Task')
 const { User } = require('../models/User')
 
 const taskController = {
+
+    byEmail: async(req, res) => {
+        Task.find({"user.email" : req.params.email}).lean().then(tarefas => {
+            res.json(tarefas)
+        }).catch(err => {
+            res.json({msg: 'Erro ao carregar lista tarefas'})
+        })
+        
+    },
+
     create: async(req, res) => {   
         User.findById( req.body.user ).then( user => {
             

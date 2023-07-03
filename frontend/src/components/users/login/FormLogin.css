@@ -1,0 +1,40 @@
+.FormularioLogin {
+    background-color: rgb(180, 117, 231);
+    margin: auto; padding: 10px;
+    width: 380px; height: 500px;
+    text-align: center;
+    border-radius: 20px;
+    color: rgb(62, 12, 85);
+    font-size: 20px;
+    box-shadow: 5px 5px 5px gray;
+}
+
+.FormularioLogin div {
+    padding: 20px;
+}
+
+.FormularioLogin input[type="text"] {
+    width: 230px; height: 35px;
+    border-radius: 20px; border: none;
+    outline: none;
+    padding: 0 30px;
+}
+
+.FormularioLogin input[type="password"] {
+    width: 230px; height: 35px;
+    border-radius: 20px; border: none;
+    outline: none;
+    padding: 0 30px;
+}
+
+.FormularioLogin input[type="submit"] {
+    width: 290px; height: 35px;
+    border-radius: 20px; border: none;
+    outline: none;
+    padding: 0 10px;
+}
+
+.FormularioLogin input[type="submit"]:hover {
+    background-color: rgb(166, 62, 252);
+    color: white;
+}

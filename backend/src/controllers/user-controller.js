@@ -13,7 +13,7 @@ const userController = {
         new User(newUser).save().then(user => {
             res.json([user, {msg: 'Novo usuário criado com sucesso'}])
         }).catch(err => {
-            res.json([{msg: "Erro ao cadastrar novo usuário"}])
+            res.json([{msg: "Erro ao cadastrar novo usuário" + err}])
         })
     },
 
