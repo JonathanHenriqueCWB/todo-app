@@ -1,16 +1,29 @@
 import './FormLogin.css'
 import {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from '../../../services/axios'
 
 const FormularioLogon = props => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [erro, setErro] = useState()
     const navigate = useNavigate()
 
     function handleSubmit(event){
         event.preventDefault();
-        navigate('/')        
+
+        const bodyParam = { email: email, password: password }
+        
+        axios.post("/api/usuarios/login", bodyParam).then(response => {
+            localStorage.setItem("token", response.data[0].token);
+            localStorage.setItem("email", response.data[0].email);
+            navigate('/')        
+        }).catch(err => {
+            console.error(err.response.data) // Objeto de erro vindo do axios
+            setErro(err.response.data[0].msg)
+        })
+
     }
 
     return(
@@ -27,6 +40,7 @@ const FormularioLogon = props => {
             <div>
                 <br /><input type="submit" value="LOGIN" /><br /><br />
                 <p>Cadastre-se aqui: <a href='/register'>cadastrar</a></p>
+                <p>{erro}</p>
             </div>
         </form>
     )

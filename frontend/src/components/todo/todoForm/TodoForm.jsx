@@ -16,7 +16,7 @@ const TodoForm = props => {
                 <h1>NOVA TAREFA</h1><br />
                 <div>
                     <label htmlFor="description"></label>
-                    <input type="text" value={description} onChange={e => setDescription(e.target.value)} />
+                    <input id='description' name='description' type="text" value={description} onChange={e => setDescription(e.target.value)} />
                     <input type="submit" value="CRIAR TAREFA" />
                 </div>
             </form>
