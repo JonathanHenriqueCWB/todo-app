@@ -1,34 +1,15 @@
-import axios from '../../../services/axios'
-import {useState, useEffect} from 'react'
 import './TodoList.css'
 
-const TodoList = pros => {
-
-    const [tarefas, setTarefas] = useState([])
-    const token = localStorage.getItem("token")
-    const email = localStorage.getItem("email")
-
-    useEffect(() => {
-
-        const config = {
-            headers: { Authorization: `Bearer ${token}` }
-        };
-
-        axios.get(`/api/tarefas/${email}`, config).then(response => {
-            setTarefas(response.data)
-        }).catch(err => {
-            setTarefas(err)
-        })
-    }, [email, token])
+const TodoList = props => {
 
     return (
         <div className='TodoList'>
             <h2>TAREFAS</h2>
-            {tarefas.map(product => (
-                <div key={product._id}>
-                    <input name='tarefa' type="text" readOnly value={product.description}  placeholder='NOVA TAREFA' />
+            {props.tarefas.map(task => (
+                <div key={task._id}>
+                    <input name='tarefa' type="text" readOnly value={task.description} />
                     <input type="submit" value="DONE" />
-                    <input type="submit" value="DEL" />
+                    <input type="submit" value="DEL" onClick={() => props.deletarTarefa(task._id)} />
                 </div>
             ))}
         </div>

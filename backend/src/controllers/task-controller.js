@@ -7,7 +7,7 @@ const taskController = {
         Task.find({"user.email" : req.params.email}).lean().then(tarefas => {
             res.json(tarefas)
         }).catch(err => {
-            res.json({msg: 'Erro ao carregar lista tarefas'})
+            res.json([{msg: 'Erro ao carregar lista tarefas'}])
         })
         
     },
@@ -20,14 +20,14 @@ const taskController = {
                 done: req.body.done, user: user
             }
             
-            new Task(newTask).save().then(() => {
-                res.json({msg: 'Tarefa cadastrada com sucesso'})
+            new Task(newTask).save().then(task => {
+                res.json([task, { msg: 'Tarefa cadastrada com sucesso'}])
             }).catch(err => {
-                res.json({msg: 'Erro ao cadastrar nova tarefa'})
+                res.json([{msg: 'Erro ao cadastrar nova tarefa'}])
             })
 
         }).catch( err => {
-            res.json({msg: "Tarefa sem usuário"})
+            res.json([{msg: "Tarefa sem usuário"}])
         })
     },
 
@@ -35,7 +35,7 @@ const taskController = {
         Task.find().lean().then(tarefas => {
             res.json(tarefas)
         }).catch(err => {
-            res.json({msg: 'Erro ao carregar lista tarefas'})
+            res.json([{msg: 'Erro ao carregar lista tarefas'}])
         })
     },
 
@@ -44,18 +44,18 @@ const taskController = {
             tarefa.description = req.body.description
             tarefa.done = req.body.done
             tarefa.save().then(() => {
-                res.json({msg: 'Tarefa auterada com sucesso'})
+                res.json([{msg: 'Tarefa auterada com sucesso'}])
             })
         }).catch(err => {
-            res.json({msg: 'Erro ao tentar alterar registro'})
+            res.json([{msg: 'Erro ao tentar alterar registro'}])
         })
     },
 
     delete: async(req, res) => {
-        Task.deleteOne({_id: req.params.id}).then(() => {
-            res.json({msg: 'Tarefa deletada com sucesso'})
+        Task.deleteOne({_id: req.params.id}).then(task => {
+            res.json([task, { msg: 'Tarefa exluida com sucesso'}])
         }).catch(err => {
-            res.json({msg: 'Erro ao deletar tarefa'})
+            res.json([{msg: 'Erro ao deletar tarefa'}])
         })
     }
 }

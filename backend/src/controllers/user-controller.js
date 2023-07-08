@@ -50,8 +50,8 @@ const userController = {
 
         const user = await User.findOne({ 'email': email }).select('+password')
         
-        if (!user) return res.status(400).send([{ msg: 'Usuário não encontrado!' }]);
-        if (!await bcryptjs.compare(password, user.password)) return res.status(400).send([{ msg: 'Senha inválida!' }]);
+        if (!user) return res.status(400).json([user, { msg: 'Usuário não encontrado!' }]);
+        if (!await bcryptjs.compare(password, user.password)) return res.status(400).json([user, { msg: 'Senha inválida!' }]);
         
         await auth.incluirToken(user);
         res.status(200).json([user]);

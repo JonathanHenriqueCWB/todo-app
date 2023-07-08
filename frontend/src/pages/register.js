@@ -1,4 +1,4 @@
-import FormRegister from "../components/users/register/FormRegister"
+import FormRegister from "../components/register/FormRegister"
 
 const Register = props => {
     return (

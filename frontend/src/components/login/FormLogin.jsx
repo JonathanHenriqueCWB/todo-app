@@ -1,7 +1,7 @@
 import './FormLogin.css'
 import {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from '../../../services/axios'
+import axios from '../../services/axios'
 
 const FormularioLogon = props => {
 
@@ -18,10 +18,11 @@ const FormularioLogon = props => {
         axios.post("/api/usuarios/login", bodyParam).then(response => {
             localStorage.setItem("token", response.data[0].token);
             localStorage.setItem("email", response.data[0].email);
+            localStorage.setItem("id", response.data[0]._id);
             navigate('/')        
         }).catch(err => {
             console.error(err.response.data) // Objeto de erro vindo do axios
-            setErro(err.response.data[0].msg)
+            setErro(err.response.data[1].msg)
         })
 
     }

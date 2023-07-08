@@ -1,4 +1,4 @@
-import FormularioLogin from '../components/users/login/FormLogin'
+import FormularioLogin from '../components/login/FormLogin'
 
 const login = props => {
     return (
